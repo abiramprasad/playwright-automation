@@ -15,7 +15,7 @@ export function getConfig(): EnvironmentConfig {
         return environments['qa'];
     }
     console.log(`🌍 Environment: ${envName}`);
-    console.log(`🔗 URL: ${config.baseURL}`);
+    console.log(`🔗 URL is: ${config.baseURL}`);
 
     return config;
 }
