@@ -1,0 +1,5 @@
+Recipe (Test):
+1. Ingredients needed    → import statement
+2. Dish name             → test name
+3. Cooking steps         → await actions
+4. Taste check           → expect (assertion)
