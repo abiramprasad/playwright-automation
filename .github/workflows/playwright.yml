@@ -1,0 +1,52 @@
+# .github/workflows/playwright.yml
+
+name: Playwright Tests
+
+# WHEN to run:
+on:
+  push:                    # Run when code is pushed
+    branches: [ main ]     # Only on main branch
+  pull_request:            # Run when PR is created
+    branches: [ main ]
+
+jobs:
+  test:
+    # Run on Ubuntu (Linux) server:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Step 1: Get your code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Install Playwright browsers
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      # Step 5: Run your tests!
+      - name: Run Playwright tests
+        run: npx playwright test --project=chromium
+        env:
+          ENV: qa                               # Environment!
+          QA_USERNAME: ${{ secrets.QA_USERNAME }}  # From GitHub secrets!
+          QA_PASSWORD: ${{ secrets.QA_PASSWORD }}  # Secure!
+
+      # Step 6: Upload test report (even on failure!)
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        if: always()                           # Always upload!
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30                   # Keep for 30 days!
