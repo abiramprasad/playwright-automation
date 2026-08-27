@@ -1,3 +1,32 @@
+import  {Page, Locator} from '@playwright/test';
+
+export class LoginPage {
+    // All locators in one place
+    private usernameField: Locator;
+    private passwordField: Locator;
+    private submitButton: Locator;
+    readonly errorMessage: Locator;
+
+    constructor(private page: Page) {
+        this.usernameField = page.locator('#username');
+        this.passwordField = page.locator('#password');
+        this.submitButton = page.getByRole('button', {name: 'submit'});
+        this.errorMessage = page.locator('#error');
+    }
+
+    // Navigate to login page
+    async navigateTo() {
+        await this.page.goto('/practice-test-login/');
+    }
+
+    //Login actions reusable
+    async loginAs(username: string, password: string) {
+        await this.usernameField.fill(username);
+        await this.passwordField.fill(password);
+        await this.submitButton.click();
+    }
+}
+
 /* import {Page, Locator} from '@playwright/test'
 
 export class LoginPage  {
@@ -42,7 +71,7 @@ export class LoginPage  {
         await this.enterPassword(password);
         await this.clickSubmit();
     }
-} */
+} 
 
     // Test for Phase 5 of framework design, using inheritance and basePage.ts
     
@@ -68,3 +97,4 @@ export class LoginPage extends BasePage {
         await this.submitButton.click();
     }
 }
+*/

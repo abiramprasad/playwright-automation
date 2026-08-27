@@ -1,0 +1,7 @@
+git remote add origin https://github.com/abiramprasad/playwright-automation.git
+git init
+git add .
+git status
+git commit -m "Initial Playwright framework setup"
+git branch -M main
+git push -u origin main
