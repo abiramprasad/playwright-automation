@@ -20,3 +20,4 @@ export const loginData = [
     errorText: 'Your password is invalid!'
     }
 ];
+//Testing git hub commands
