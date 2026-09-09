@@ -1,6 +1,6 @@
 export const loginData = [
     {
-    scenario: 'Valid credentails',
+    scenario: 'Valid credentails', 
     username: 'student',
     password: 'Password123',
     expected: 'pass'
