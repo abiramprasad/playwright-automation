@@ -51,6 +51,13 @@ test.describe('Dashboard Tests @regression', () => {
 
 });
 
+// TEST SUITE 3: Negative test for empty fields
+
+test('Login Test - Empty Fields show error @smoke', async ({ loginPage }) => {
+    await loginPage.loginAs('', '');
+    await expect (loginPage.errorMessage).toBeVisible();
+});
+
 /* import { test, expect } from '@playwright/test';
 
 // Test 1: Valid Login
